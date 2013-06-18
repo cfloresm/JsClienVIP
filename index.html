@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<title>Sign-in w/VIP Intelligent Authentication - Example</title>
+		<!-- Include VIP IA JavaScript Library -->
+		<script type="text/javascript" src="https://vipuserservices.verisign.com/vipuserservices/static/v_1_0/scripts/iadfp.js"></script>
+	</head>
+	<body>
+		<form method="post">
+		<input type="text" name="username" />
+		<input type="password" name="password" />
+		<!-- Add Device Fingerprint Form Element -->
+		<input type="hidden" name="deviceFingerprint" id="deviceFingerprint" />
+		<!-- Populate Device Fingerprint Form Element Before
+		Submitting Sign-in Form -->
+		<input type="submit" onclick="document.getElementById('deviceFingerprint').value=IaDfp.readFingerprint();return
+		true;" value="Sign-In" />
+		</form>
+	</body>
+</html>

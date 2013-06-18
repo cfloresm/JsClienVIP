@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Insert title here</title>
+		<!-- BEGIN VIP integration code -->
+		<script type="text/javascript" src="https://vipuserservices.verisign.com/vipuserservices/resources/js/v_1_0/vip?appId=3556656464"></script>
+		<script type="text/javascript">
+		function vipAuth() {
+			
+			try{
+				var passwordField = $('[name="Signin.password"]');
+				var formName = 'SigninForm';
+				var usernameField = $('[name="Signin.username"]');
+				var otpField = $('[name="Signin.securitycode"]');
+				var username = usernameField.val();
+				var password = passwordField.val();
+				var otp = otpField.val();
+				alert("passwordField :" + username +"\n"
+					+ "usernameField :"+ password + "\n"
+					+ "otpField :"+ otp );
+
+			if (username) {
+				vip.genTicket({user:username, password:password}, function(success, ret) {	
+				try{	
+					if (success) {
+						otpField.val(ret.ticket);
+						document.forms[formName].onsubmit=function (event){return true;};
+						document.forms[formName].submit();
+					}
+					else {
+						if(typeof console != "undefined" && typeof console.log !="undefined"){
+							console.log("GenTicket failed " + ret.toString());
+						}
+					}
+				}catch(err){
+					if(typeof console != "undefined" && typeof console.log != "undefined"){
+						console.log('ERROR: Unable to generate ticket');
+					}
+				}
+				});
+			}
+			return false;
+			}catch(err){
+			if(typeof console != "undefined" && typeof console.log != "undefined"){
+			console.log('ERROR: Unable to submit the request');
+			}
+			}
+			}
+			</script>
+	</head>
+	<body>
+		<form name="loginForm" id="" action="login.html" method="post" onsubmit="return vipAuth();">
+<!-- 			<label>Usuario</label><input> <br> -->
+<!-- 			<label>Password</label><input>	 -->
+<!-- 			<button ></button>	 -->
+			<input  type="text" name="Signin.username"> <br/>
+			<input  type="text" name="Signin.password" > <br/>
+			<input  type="text" name="Signin.securitycode"> <br/>			
+			<input type="submit" value="Submit">
+		</form>
+		
+	</body>
+</html>
