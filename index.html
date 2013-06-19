@@ -2,18 +2,29 @@
 	<head>
 		<title>Sign-in w/VIP Intelligent Authentication - Example</title>
 		<!-- Include VIP IA JavaScript Library -->
-		<script type="text/javascript" src="https://vipuserservices.verisign.com/vipuserservices/static/v_1_0/scripts/iadfp.js"></script>
+		<script type="text/javascript" src="javascript/iadfp.js"></script>
+		<!-- BEGIN VIP integration code -->
+		<script type="text/javascript" src="https://userservices.vip.symantec.com/vipuserservices/resources/js/v_1_0/vip?appId=8383688830&autoIntegration=simplified"></script>
+		<!-- END VIP integration code -->
 	</head>
 	<body>
-		<form method="post">
-		<input type="text" name="username" />
-		<input type="password" name="password" />
+		<form action=""  method="post" >
+		<!--<input type="text" name="username" value="codeUser1" /> -->
+		<!--<input type="password" name="password" value="cflores29" />-->
 		<!-- Add Device Fingerprint Form Element -->
-		<input type="hidden" name="deviceFingerprint" id="deviceFingerprint" />
+		<!--<input type="text" name="deviceFingerprint" id="deviceFingerprint" />-->
 		<!-- Populate Device Fingerprint Form Element Before
 		Submitting Sign-in Form -->
-		<input type="submit" onclick="document.getElementById('deviceFingerprint').value=IaDfp.readFingerprint();return
-		true;" value="Sign-In" />
+		<!--<input type="submit" onclick="document.getElementById('deviceFingerprint').value=IaDfp.readFingerprint();return true;" value="Sign-In" /> -->
+		<input type="submit" onclick="showfingerprint()" value="Sign-In" />
 		</form>
+		<script type="text/javascript">
+			function showfingerprint()
+			{
+				var fingerprint = IaDfp.readFingerprint();
+				alert("This is fingerprint") ;
+				//alert(IaDfp.readFingerprint());
+			}	
+		</script>
 	</body>
 </html>
